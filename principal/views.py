@@ -31,3 +31,28 @@ def registro(request):
     
     
     return render(request, 'registration/registro.html',data)
+
+def agregar_servicio(request):
+
+    data= {
+            'servicio_form': ServicioForm()
+        }    
+   
+    if request.method == 'POST':
+            formulario = ServicioForm(data=request.POST, files=request.FILES)
+            if formulario.is_valid():
+                formulario.save()
+                messages.success(request, "Raza creada con éxito")    
+                data["mensaje"] = "guardado"
+            else:
+                data ["form"] = formulario
+    return render(request, 'back/agregar_servicio.html', data);
+
+def listar_servicios(request):
+    
+    servicios = Servicio.objects.all()
+    
+    data = {
+        'servicios' : servicios
+    }
+    return render(request, 'back/listar_servicios.html', data)

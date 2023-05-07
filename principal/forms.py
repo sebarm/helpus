@@ -35,3 +35,21 @@ class CustomerUserCreationForm(UserCreationForm):
         self.fields['username'].label = "Usuario"
         self.fields['password1'].label = "Contraseña"
         self.fields['password2'].label = "Confirmar Contraseña"
+        
+        
+
+class ServicioForm(forms.ModelForm):
+    fecha_inicio = forms.DateTimeField(
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        label=_("Fecha de inicio"),
+        required=True,
+    )
+    fecha_termino = forms.DateTimeField(
+        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        label=_("Fecha de termino"),
+        required=True,
+    )
+    
+    class Meta:
+        model = Servicio
+        fields = '__all__'        

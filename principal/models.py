@@ -20,6 +20,8 @@ class Servicio(models.Model):
     descripcion = models.CharField(max_length=200, validators=[MaxLengthValidator(200)])
     fecha_creacion = models.DateField(auto_now_add=True)
     estado_servicio = models.BooleanField(default=True)
+    fecha_inicio = models.DateTimeField(null=True, blank=True)
+    fecha_termino = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.nombre
@@ -31,8 +33,7 @@ class Servicio(models.Model):
 
     def clean(self):
         # Validación de fecha de creación
-        if self.fecha_creacion > timezone.now().date():
-            raise ValidationError('La fecha de creación no puede ser mayor que la fecha actual.')
+        
 
         # Validación de campo estado_servicio
         if self.estado_servicio not in [True, False]:

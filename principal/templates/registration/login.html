@@ -1,0 +1,39 @@
+
+{% extends 'main.html'%}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block contenido %}
+<div class="container">
+       
+    <div class="row">
+        <div class="col-12 col-md-6 offset-md-3">
+            <br>
+            <div class="card" align="center">
+                <div class="card-body">
+                    <br>
+                    <h2>Ingresar</h2>
+                    <hr>
+
+                    <form action="" method="post">
+
+                        {% csrf_token %} 
+                        {{ form | crispy}}
+                        <a href="{% url 'home' %}" >ir a la Inicio</a>
+                        <a href="{% url 'registro' %}" >Crear cuenta</a>
+                        <hr>
+                        <input type="reset" value="Cancelar" class="btn btn-danger"> &nbsp;
+                        <input type="submit" class="btn btn-primary"  value="Aceptar" >
+                    
+                    </form>
+
+                </div>
+            </div>
+<br>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock contenido %}

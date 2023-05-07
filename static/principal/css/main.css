@@ -1,0 +1,32 @@
+body{
+    background-color: rgb(0, 0, 0);
+}
+
+.navbar{
+    background-color: #0f1e35
+}
+
+.nav-link {
+    color: rgb(255, 255, 255);
+  }
+  
+  .nav-link:hover {
+    color: rgb(1, 220, 1);
+  }
+  
+  .btn-container {
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin-left: 300px;
+  }  
+
+  .btn-nav-button {
+    background-color: #facfff;
+    color: #000000;
+    margin-left: 5px;
+  }  
+
+  #col-login{
+    background-color: rgb(255, 119, 0);
+  }

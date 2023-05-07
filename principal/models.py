@@ -20,6 +20,7 @@ class Servicio(models.Model):
     descripcion = models.CharField(max_length=200, validators=[MaxLengthValidator(200)])
     fecha_creacion = models.DateField(auto_now_add=True)
     estado_servicio = models.BooleanField(default=True)
+    direccion = models.CharField(max_length=200, validators=[MaxLengthValidator(200)])
     fecha_inicio = models.DateTimeField(null=True, blank=True)
     fecha_termino = models.DateTimeField(null=True, blank=True)
 
@@ -62,8 +63,6 @@ class Usuario(models.Model):
     ap_paterno = models.CharField(max_length=200, validators=[MinLengthValidator(2)])
     ap_materno = models.CharField(max_length=200, validators=[MinLengthValidator(2)])
     email = models.EmailField()
-    contrasena_regex  = '^(?=.*[a-zA-Z])[\w@$!%*?&]{3,10}$'
-    contrasena = models.CharField(max_length=10, unique=True, validators=[RegexValidator(contrasena_regex)])
     direccion = models.CharField(max_length=200, validators=[MinLengthValidator(5)])
     fecha_nac = models.DateTimeField()
     telefono = models.CharField(

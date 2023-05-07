@@ -6,14 +6,13 @@ from django.utils.translation import gettext_lazy as _
 
 
 
-#de esta forma transformo los campos en ingles del user default de django a español        
+#usercreationform tiene un metodo para comparar las contraseñas automaticamente por eso no hay que hacerlo  
 class CustomerUserCreationForm(UserCreationForm):
     tipo = forms.ModelChoiceField(queryset=TipoUsuario.objects.all(), label=_("Tipo de usuario"))
     nombre = forms.CharField(max_length=200, validators=[MinLengthValidator(2)], label=_("Nombre"))
     ap_paterno = forms.CharField(max_length=200, validators=[MinLengthValidator(2)], label=_("Apellido paterno"))
     ap_materno = forms.CharField(max_length=200, validators=[MinLengthValidator(2)], label=_("Apellido materno"))
     email = forms.EmailField( label=_("Correo electrónico"))
-    contrasena = forms.CharField(max_length=10, widget=forms.PasswordInput, label=_("Contraseña"))
     direccion = forms.CharField(max_length=200, validators=[MinLengthValidator(5)], label=_("Dirección"))
     fecha_nac = forms.DateTimeField(
         widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
@@ -36,7 +35,22 @@ class CustomerUserCreationForm(UserCreationForm):
         self.fields['password1'].label = "Contraseña"
         self.fields['password2'].label = "Confirmar Contraseña"
         
-        
+    def create_user(self):
+        user = super(CustomerUserCreationForm, self).save(commit=False)
+        user.save()
+        user = Usuario.objects.create(
+            user=user,
+            nombre=self.cleaned_data["nombre"],
+            ap_paterno=self.cleaned_data["ap_paterno"],
+            ap_materno=self.cleaned_data["ap_materno"],
+            email=self.cleaned_data["email"],
+            direccion=self.cleaned_data["direccion"],
+            fecha_nac=self.cleaned_data["fecha_nac"],
+            telefono=self.cleaned_data["telefono"],
+            tipo=self.cleaned_data["tipo"],
+            puntuacion=self.cleaned_data["puntuacion"],
+    )
+        return user
 
 class ServicioForm(forms.ModelForm):
     fecha_inicio = forms.DateTimeField(

@@ -89,7 +89,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
         'NAME': 'orcl',
-        'USER': 'c##helpus4',
+        'USER': 'c##helpus5',
         'PASSWORD': '123',
         'HOST': '',
         'PORT': '',

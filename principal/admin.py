@@ -12,4 +12,5 @@ class TipoUsuarioAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Servicio, ServicioAdmin)  
 admin.site.register(TipoUsuario, TipoUsuarioAdmin) 
+admin.site.register(Usuario)
 

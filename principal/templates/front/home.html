@@ -11,7 +11,51 @@
           <img src="{% static 'principal/img/hero.png' %}" alt="imagen" class="img-fluid"> 
       </div>
     </div>
-
+    <div class="card">
+        <div class="card-body">
+            <h2 class="text-center">Listado de servicios</h2>
+            <a  class="btn btn-outline-dark" href="{% url 'home' %}">&#x2190; Volver a tienda</a>
+                <hr>
+    
+    
+            <table class="table table-striped table-hover table-responsive-sm">
+                <tr>
+                    <th>id</th>
+                    <th>nombre</th>
+                    <th>descripcion</th>
+                    <th>fecha inicio</th>
+                    <th>fecha termino</th>
+                    <th>direccion</th>
+    
+                </tr>
+    
+                {% for p in servicios %}
+    
+                <tr>
+                    <td>{{ p.id | title }}</td>
+                    <td>{{ p.nombre | title }}</td>
+                    <td>${{ p.descripcion }}</td>
+                    <td>${{ p.fecha_inicio }}</td>
+                    <td>${{ p.fecha_termino }}</td>
+                    <td>${{ p.direccion }}</td>
+                    
+    
+                    <td>
+                       
+                        
+                    </td>
+    
+                   <td>
+                    
+                   </td> 
+                </tr>
+    
+                {% endfor %}
+    
+            </table>
+    
+        </div>
+    </div>
 {% endblock contenido %}
 
 

@@ -123,7 +123,7 @@ class ServicioOfrecido(models.Model):
         servicios_usuario = ServicioOfrecido.objects.filter(usuario=self.usuario).exclude(id=self.id)
         for servicio in servicios_usuario:
             if self.fecha_inicio <= servicio.fecha_termino and self.fecha_termino >= servicio.fecha_inicio:
-                raise ValidationError('El servicio se solapa con otro servicio del usuario.')
+                raise ValidationError('El servicio topa en horario con otro servicio del usuario.')
             validar_fechas(self.fecha_inicio, self.fecha_termino)
         # otros validaciones
             

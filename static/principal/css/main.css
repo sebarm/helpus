@@ -70,6 +70,10 @@ section {
   border-radius: 15px;
 }
 
+#container2{
+  background-image: url('../img/inscripcion.png');
+  border-radius: 15px;
+}
 
 
 
@@ -95,4 +99,8 @@ input[type=submit] {
 }
 input[type=submit]:hover {
   background-color: darkred;
+}
+
+.homeSub{
+  background-image: url('../img/inscripcion.png');
 }

@@ -3,36 +3,26 @@
 {% load crispy_forms_tags %}
 
 {% block contenido %}
-<div class="container">
-       
-    <div class="row">
-        <div class="col-12 align-content-center">
-            <br>
-            <div class="card">
-                <div class="card-body">
-                    <br>
-                    <h2>Registro de usuario</h2>
-                    <hr>
 
-                    <form action="" method="post">
-
-                        {% csrf_token %} 
-                        {{ form | crispy}}
-                        <a href="{% url 'home' %}" >ir a Inicio</a>
-                        <a href="{% url 'login' %}" >Iniciar sesion</a>
-                        <hr>
-                        <input type="reset" value="Cancelar" class="btn btn-danger"> &nbsp;
-                        <input type="submit" class="btn btn-primary" value="Registrar" >
-                    
-                    </form>
-
-                </div>
-            </div>
-<br>
+<div class="container-fluid">
+    <div class="row no-gutters">
+        <div class="col-lg-6" id="col-login" style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 50vh;">
+            <h1 style="color:white;" class="text-center">Iniciar sesión</h1>
+            <form action="" method="post">
+                {% csrf_token %} 
+                {{ form | crispy}}
+                <a class="link" href="{% url 'home' %}" >Ir a Inicio</a>
+                <a class="link" href="{% url 'registro' %}" >Crear Cuenta</a>
+                <hr>
+                <input type="reset" value="Cancelar" class="btn btn-danger"> &nbsp;
+                <input type="submit" class="btn btn-primary"  value="Ingresar" >
+            </form>
         </div>
-    </div>
-
+        
+        <div class="col-lg-6">
+          <img src="{% static 'principal/img/registro.png' %}" alt="imagen" class="img"> 
+        </div>
+    </div> 
 </div>
-
 
 {% endblock contenido %}

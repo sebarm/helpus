@@ -18,6 +18,14 @@ def home(request):
 def nosotros(request):
     return render(request, 'front/nosotros.html')
 
+def recovery(request):
+    return render(request, 'registration/recovery.html')
+
+
+def changePassword(request):
+    return render(request, 'registration/changePassword.html')
+
+
 def registro(request):
 
     data = {

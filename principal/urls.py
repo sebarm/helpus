@@ -11,6 +11,8 @@ urlpatterns = [
   path('login', views.login, name="login"),
   path('agregar_servicio', views.agregar_servicio, name="agregar_servicio"),
   path('listar_servicios', views.listar_servicios, name="listar_servicios"),
+  path('recovery', views.recovery, name="recovery"),
+  path('changePassword', views.changePassword, name="changePassword"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

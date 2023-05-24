@@ -72,3 +72,27 @@ section {
 
 
 
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('../img/contrasenia.png');
+}
+form {
+  background-color: white;
+  padding: 16px;
+}
+input[type=submit] {
+  justify-items: center;  
+  background-color: red;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: darkred;
+}

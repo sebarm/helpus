@@ -80,10 +80,10 @@
             <h2 class="text-center">Listado de servicios</h2>
             <a  class="btn btn-outline-dark" href="{% url 'home' %}">&#x2190; Ir a Servicios</a>
                 <hr>
-                <div class="row">
+                <div class="row justify-content-center align-items-center">
                   {% for p in servicios %}
-                  <div class="col-md-4">
-                      <div class="card">
+                  <div class="col-md-4 mb-4">
+                      <div class="card text-center">
                           <div class="card-body">
                               <h5 class="card-title">{{ p.nombre | title }}</h5>
                               <p class="card-text"><strong>ID:</strong> {{ p.id }}</p>
@@ -93,20 +93,23 @@
                               <p class="card-text"><strong>Dirección:</strong> {{ p.direccion }}</p>
                               <p class="card-text"><strong>Usuario realizador:</strong> {{ p.usuario_realizador }}</p>
                               <p class="card-text"><strong>Usuario creador:</strong> {{ p.usuario_creador }}</p>
-                              <form method="post" action="{% url 'guardar_servicio' %}">
+                              
+                              <div class="btn-group" role="group" aria-label="Acciones">
+                                <form method="post" action="{% url 'guardar_servicio' %}">
                                   {% csrf_token %}
                                   <input type="hidden" name="servicio_id" value="{{ p.id }}">
-                                  <button type="submit" class="btn btn-sm btn-primary" style="color: white;">Aceptar</button>
+                                  <button type="submit" class="btn btn-sm btn-primary" style="color: white;" {% if p.usuario_realizador %}disabled{% endif %}>Aceptar</button>
                               </form>
-                              <form method="post" action="{% url 'eliminar_servicio' p.id %}">
-                                  {% csrf_token %}
-                                  <button type="submit" class="btn btn-sm btn-danger" style="color: white;">Eliminar</button>
-                              </form>
-
+                                  <form method="post" action="{% url 'eliminar_servicio' p.id %}">
+                                      {% csrf_token %}
+                                      <button type="submit" class="btn btn-sm btn-danger" style="color: white;">Eliminar</button>
+                                  </form>
+                              </div>
+                              
                               <form method="post" action="{% url 'liberar_servicio' p.id %}">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-sm btn-warning">Liberar servicio</button>
-                            </form>
+                                  {% csrf_token %}
+                                  <button type="submit" class="btn btn-sm btn-warning mt-2">Liberar servicio</button>
+                              </form>
                           </div>
                       </div>
                   </div>

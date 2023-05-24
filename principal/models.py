@@ -24,7 +24,7 @@ class Servicio(models.Model):
     fecha_inicio = models.DateTimeField(null=True, blank=True)
     fecha_termino = models.DateTimeField(null=True, blank=True)
     usuario_realizador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    
+    usuario_creador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='servicios_creados')
     
 
     def __str__(self):

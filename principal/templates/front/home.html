@@ -92,6 +92,7 @@
                               <p class="card-text"><strong>Fecha termino:</strong> {{ p.fecha_termino }}</p>
                               <p class="card-text"><strong>Dirección:</strong> {{ p.direccion }}</p>
                               <p class="card-text"><strong>Usuario realizador:</strong> {{ p.usuario_realizador }}</p>
+                              <p class="card-text"><strong>Usuario creador:</strong> {{ p.usuario_creador }}</p>
                               <form method="post" action="{% url 'guardar_servicio' %}">
                                   {% csrf_token %}
                                   <input type="hidden" name="servicio_id" value="{{ p.id }}">

@@ -13,6 +13,9 @@ urlpatterns = [
   path('listar_servicios', views.listar_servicios, name="listar_servicios"),
   path('recovery', views.recovery, name="recovery"),
   path('changePassword', views.changePassword, name="changePassword"),
+   path('guardar_servicio/', views.guardar_servicio, name='guardar_servicio'),
+   path('eliminar_servicio/<int:servicio_id>/', views.eliminar_servicio, name='eliminar_servicio'),
+   path('liberar_servicio/<int:servicio_id>/', views.liberar_servicio, name='liberar_servicio'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

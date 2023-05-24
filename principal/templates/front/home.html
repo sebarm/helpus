@@ -1,4 +1,6 @@
 {% extends 'main.html'%} {% load static %} 
+{% load crispy_forms_tags %}
+
 {% block contenido %}
 
 
@@ -78,32 +80,38 @@
             <h2 class="text-center">Listado de servicios</h2>
             <a  class="btn btn-outline-dark" href="{% url 'home' %}">&#x2190; Ir a Servicios</a>
                 <hr>
-            <table class="table table-striped table-hover table-responsive-sm">
-                <tr>
-                    <th>id</th>
-                    <th>nombre</th>
-                    <th>descripcion</th>
-                    <th>fecha inicio</th>
-                    <th>fecha termino</th>
-                    <th>direccion</th>
-                </tr>
-                {% for p in servicios %}
-                <tr>
-                    <td>{{ p.id | title }}</td>
-                    <td>{{ p.nombre | title }}</td>
-                    <td>{{ p.descripcion }}</td>
-                    <td>{{ p.fecha_inicio }}</td>
-                    <td>{{ p.fecha_termino }}</td>
-                    <td>{{ p.direccion }}</td>
-                    <td>
-                        <button class="btn btn-sm btn-primary"><a href="" style="color:white;">Aceptar</a></button>
-                    </td>
-                   <td>
-                   </td> 
-                  
-                </tr>
-                {% endfor %}
-            </table>
+                <div class="row">
+                  {% for p in servicios %}
+                  <div class="col-md-4">
+                      <div class="card">
+                          <div class="card-body">
+                              <h5 class="card-title">{{ p.nombre | title }}</h5>
+                              <p class="card-text"><strong>ID:</strong> {{ p.id }}</p>
+                              <p class="card-text"><strong>Descripción:</strong> {{ p.descripcion }}</p>
+                              <p class="card-text"><strong>Fecha inicio:</strong> {{ p.fecha_inicio }}</p>
+                              <p class="card-text"><strong>Fecha termino:</strong> {{ p.fecha_termino }}</p>
+                              <p class="card-text"><strong>Dirección:</strong> {{ p.direccion }}</p>
+                              <p class="card-text"><strong>Usuario realizador:</strong> {{ p.usuario_realizador }}</p>
+                              <form method="post" action="{% url 'guardar_servicio' %}">
+                                  {% csrf_token %}
+                                  <input type="hidden" name="servicio_id" value="{{ p.id }}">
+                                  <button type="submit" class="btn btn-sm btn-primary" style="color: white;">Aceptar</button>
+                              </form>
+                              <form method="post" action="{% url 'eliminar_servicio' p.id %}">
+                                  {% csrf_token %}
+                                  <button type="submit" class="btn btn-sm btn-danger" style="color: white;">Eliminar</button>
+                              </form>
+
+                              <form method="post" action="{% url 'liberar_servicio' p.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-warning">Liberar servicio</button>
+                            </form>
+                          </div>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+              
         </div>
     </div>
 

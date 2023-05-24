@@ -23,6 +23,9 @@ class Servicio(models.Model):
     direccion = models.CharField(max_length=200, validators=[MaxLengthValidator(200)])
     fecha_inicio = models.DateTimeField(null=True, blank=True)
     fecha_termino = models.DateTimeField(null=True, blank=True)
+    usuario_realizador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    
+    
 
     def __str__(self):
         return self.nombre
@@ -65,6 +68,7 @@ class Usuario(models.Model):
     email = models.EmailField()
     direccion = models.CharField(max_length=200, validators=[MinLengthValidator(5)])
     fecha_nac = models.DateTimeField()
+    servicio_asignado = models.ForeignKey(Servicio, on_delete=models.SET_NULL, null=True, blank=True)
     telefono = models.CharField(
         max_length=200,validators=[RegexValidator(r'^\+?1?\d{9,15}$')])
     puntuacion = models.IntegerField(

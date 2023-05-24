@@ -9,9 +9,11 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
     servicios = Servicio.objects.all()
-    
+    usuarios = Usuario.objects.all()
     data = {
-        'servicios' : servicios
+        'servicios' : servicios,
+        'usuarios' : usuarios,
+        
     }
     
     return render(request, 'front/home.html',data)
@@ -25,6 +27,12 @@ def recovery(request):
 
 def changePassword(request):
     return render(request, 'registration/changePassword.html')
+
+@login_required
+def perfil(request):
+    usuario = request.user
+    # Otros códigos relacionados con el perfil
+    return render(request, 'front/perfil.html', {'usuario': usuario})
 
 
 def registro(request):

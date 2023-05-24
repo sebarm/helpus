@@ -1,0 +1,13 @@
+{% extends 'main.html'%} {% load static %} 
+{% block contenido %}
+
+<div class="container-fluid"><h1>Perfil de usuario</h1>
+
+    <p><strong>Nombre de usuario:</strong> {{ usuario.username }}</p>
+    <p><strong>Nombre:</strong> {{ usuario.usuario.nombre }}</p>
+    <p><strong>Apellido paterno:</strong> {{ usuario.usuario.ap_paterno }}</p>
+    <p><strong>Apellido materno:</strong> {{ usuario.usuario.ap_materno }}</p>
+    <p><strong>Email:</strong> {{ usuario.puntuacion }}</p></div>
+
+
+{% endblock contenido %}

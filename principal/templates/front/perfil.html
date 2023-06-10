@@ -3,15 +3,21 @@
 
 
 <div class="center">
+ 
     <ul>
       <li><strong>Nombre de usuario:</strong> {{ usuario.username }}</li>
       <li><strong>Nombre:</strong> {{ usuario.usuario.nombre }}</li>
       <li><strong>Apellido paterno:</strong> {{ usuario.usuario.ap_paterno }}</li>
       <li><strong>Apellido materno:</strong> {{ usuario.usuario.ap_materno }}</li>
-      <li><strong>email:</strong> {{ usuario.usuario.email }}</li>
+      <li><strong>Teléfono:</strong> {{ usuario.usuario.telefono }}</li>
+      <li><strong>Email:</strong> {{ usuario.usuario.email }}</li>
+      <li><strong>Dirección:</strong> {{ usuario.usuario.direccion }}</li>
+      <li><strong>Fecha de nacimiento:</strong> {{ usuario.usuario.fecha_nac }}</li>
       <li><strong>Puntuacion:</strong> {{ usuario.usuario.puntuacion }}</li>
-      
+      <br>
+      <a href="{% url 'home' %}" class="btn btn-success">Ir a home</a>
     </ul>
+    
   </div>
   
   

@@ -14,7 +14,14 @@
       <li><strong>Dirección:</strong> {{ usuario.usuario.direccion }}</li>
       <li><strong>Fecha de nacimiento:</strong> {{ usuario.usuario.fecha_nac }}</li>
       <li><strong>Puntuacion:</strong> {{ usuario.usuario.puntuacion }}</li>
-      <li><strong>Puntuacion:</strong> {{ servicios_solicitados }}</li>
+      <h2>Servicios Aceptados:</h2>
+      <ul>
+          {% for servicio in servicios_aceptados %}
+              <li>{{ servicio.nombre }}</li>
+          {% empty %}
+              <li>No has aceptado ningún servicio</li>
+          {% endfor %}
+      </ul>
       <br>
       <a href="{% url 'home' %}" class="btn btn-success">Ir a home</a>
     </ul>

@@ -75,6 +75,10 @@ class Usuario(models.Model):
         validators=[MinValueValidator(0), MaxValueValidator(7)])
     
     
+    def servicios_aceptados(self):
+        return Servicio.objects.filter(usuario_realizador=self.user)
+    
+    
     def __str__(self):
         return self.nombre
     

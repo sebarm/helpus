@@ -32,9 +32,13 @@ def changePassword(request):
 
 @login_required
 def perfil(request):
-    usuario = request.user
+    user = request.user
+    usuario = request.user.usuario  # Modifica esta línea
+    servicios_aceptados = usuario.servicios_aceptados()
     # Otros códigos relacionados con el perfil
-    return render(request, 'front/perfil.html', {'usuario': usuario})
+    return render(request, 'front/perfil.html', {'usuario': user, 'servicios_aceptados': servicios_aceptados})
+
+
 
 
 def registro(request):

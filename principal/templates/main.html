@@ -110,7 +110,20 @@
       crossorigin="anonymous"
     ></script>
 
-    <!--acá se hace un for si existe algun mensaje en los formularios-->
+   <!--acá se hace un for si existe algun mensaje en los formularios-->
+   {% if messages %}
+  {% for m in messages %}
+    <script>
+      Swal.fire({
+        title: "{% if m.tags == 'error' %}Error{% else %}Correcto{% endif %}",
+        text: "{{ m }}",
+        icon: "{% if m.tags == 'error' %}error{% else %}success{% endif %}",
+      });
+    </script>
+  {% endfor %}
+{% endif %}
+{% block js %}{% endblock %}
+
    
   </body>
 </html>

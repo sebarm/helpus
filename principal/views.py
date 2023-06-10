@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from datetime import datetime, timedelta
+from django.utils import timezone
 # Create your views here.
 def home(request):
     servicios = Servicio.objects.all()
@@ -114,9 +116,15 @@ def liberar_servicio(request, servicio_id):
     servicio = get_object_or_404(Servicio, id=servicio_id)
 
     if servicio.usuario_realizador == request.user:
-        servicio.usuario_realizador = None
-        servicio.save()
-        messages.success(request, "Servicio liberado correctamente.")
+        fecha_termino = servicio.fecha_termino
+        fecha_actual = timezone.now()
+
+        if fecha_termino - timedelta(days=7) >= fecha_actual:
+            servicio.usuario_realizador = None
+            servicio.save()
+            messages.success(request, "Servicio liberado correctamente.")
+        else:
+            messages.error(request, "No puedes liberar este servicio porque quedan menos de 7 días antes de la fecha de término.")
     else:
         messages.error(request, "No tienes permiso para liberar este servicio.")
 

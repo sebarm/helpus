@@ -124,7 +124,7 @@ def liberar_servicio(request, servicio_id):
             servicio.save()
             messages.success(request, "Servicio liberado correctamente.")
         else:
-            messages.error(request, "No puedes liberar este servicio porque quedan menos de 7 días antes de la fecha de término.")
+            messages.error(request, "No puedes liberar este servicio debido a conflictos con la fecha")
     else:
         messages.error(request, "No tienes permiso para liberar este servicio.")
 

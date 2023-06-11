@@ -54,28 +54,25 @@ def perfil(request, id):
 
 
 def registro(request):
-    form = CustomerUserCreationForm()
+
+    data = {
+        'form': CustomerUserCreationForm()
+    }
+    
     if request.method == 'POST':
-        form = CustomerUserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            user.usuario = Usuario.objects.create(
-                user=user,
-                nombre=form.cleaned_data["nombre"],
-                ap_paterno=form.cleaned_data["ap_paterno"],
-                ap_materno=form.cleaned_data["ap_materno"],
-                email=form.cleaned_data["email"],
-                direccion=form.cleaned_data["direccion"],
-                fecha_nac=form.cleaned_data["fecha_nac"],
-                telefono=form.cleaned_data["telefono"],
-                tipo=form.cleaned_data["tipo"],
-                puntuacion=form.cleaned_data["puntuacion"]
-            )
-            user.save()
+        formulario =CustomerUserCreationForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
+            Usuario.objects.create(user=user, nombre=user.username, email= formulario.cleaned_data["email"], fecha_nac= formulario.cleaned_data["fecha_nac"], telefono= formulario.cleaned_data["telefono"], direccion= formulario.cleaned_data["direccion"], tipo= formulario.cleaned_data["tipo"], puntuacion= formulario.cleaned_data["puntuacion"], ap_paterno= formulario.cleaned_data["ap_paterno"], ap_materno= formulario.cleaned_data["ap_materno"]         )
             login(request, user)
-            messages.success(request, "Registro exitoso, ahora puedes solicitar o también ofrecer servicios.")
-            return redirect('home')
-    return render(request, 'registration/registro.html', {'form': form})
+            messages.success(request, "Registro con éxito ahora puedes solicitar o tambien ofrecer servicios")
+            return redirect(to="home")
+        data["form"] = formulario
+    
+    
+    return render(request, 'registration/registro.html',data)
+
 def agregar_servicio(request):
 
     data= {

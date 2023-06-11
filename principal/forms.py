@@ -21,6 +21,7 @@ class CustomerUserCreationForm(UserCreationForm):
     )
     telefono = forms.CharField(max_length=200, validators=[RegexValidator(r'^\+?1?\d{9,15}$')], label=_("Teléfono"))
     puntuacion = forms.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(7)], label=_("Puntuación"))
+    username = forms.CharField(max_length=200, validators=[MinLengthValidator(2)], label=_("Nombre de usuario"))
 
     def clean_fecha_nac(self):
         fecha_nac = self.cleaned_data.get('fecha_nac')
@@ -28,27 +29,10 @@ class CustomerUserCreationForm(UserCreationForm):
             raise forms.ValidationError(_("La fecha de nacimiento es obligatoria"))
         return fecha_nac
 
-    def __init__(self, *args, **kwargs):
-        super(CustomerUserCreationForm, self).__init__(*args, **kwargs)
-        self.fields['username'].label = "Usuario"
-        self.fields['password1'].label = "Contraseña"
-        self.fields['password2'].label = "Confirmar Contraseña"
 
-    def save(self, commit=True):
-        user = super(CustomerUserCreationForm, self).save(commit=False)
-        if commit:
-            user.save()
-            user.nombre = self.cleaned_data["nombre"]
-            user.ap_paterno = self.cleaned_data["ap_paterno"]
-            user.ap_materno = self.cleaned_data["ap_materno"]
-            user.email = self.cleaned_data["email"]
-            user.direccion = self.cleaned_data["direccion"]
-            user.fecha_nac = self.cleaned_data["fecha_nac"]
-            user.telefono = self.cleaned_data["telefono"]
-            user.tipo = self.cleaned_data["tipo"]
-            user.puntuacion = self.cleaned_data["puntuacion"]
-            user.save()
-        return user
+    class Meta:
+        model = User
+        fields = ( 'username','tipo', 'nombre', 'ap_paterno','ap_materno','email', 'direccion', 'fecha_nac', 'telefono', 'puntuacion', 'password1', 'password2')        
 
 class ServicioForm(forms.ModelForm):
     fecha_inicio = forms.DateTimeField(

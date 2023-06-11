@@ -15,35 +15,6 @@ def validar_fechas(fecha_inicio, fecha_termino):
         raise ValidationError('La fecha de término no puede ser anterior a la fecha de inicio.')
 
 
-class Servicio(models.Model):
-    nombre = models.CharField(max_length=200, unique=True, validators=[MaxLengthValidator(200)])
-    descripcion = models.CharField(max_length=200, validators=[MaxLengthValidator(200)])
-    fecha_creacion = models.DateField(auto_now_add=True)
-    estado_servicio = models.BooleanField(default=True)
-    direccion = models.CharField(max_length=200, validators=[MaxLengthValidator(200)])
-    fecha_inicio = models.DateTimeField(null=True, blank=True)
-    fecha_termino = models.DateTimeField(null=True, blank=True)
-    usuario_realizador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    usuario_creador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='servicios_creados')
-    
-
-    def __str__(self):
-        return self.nombre
-    
-    class Meta:
-        verbose_name = 'Servicio'
-        verbose_name_plural = 'Servicios'
-        db_table = 'Servicio'
-
-    def clean(self):
-        # Validación de fecha de creación
-        
-
-        # Validación de campo estado_servicio
-        if self.estado_servicio not in [True, False]:
-            raise ValidationError('El campo estado_servicio debe tener un valor booleano.')
-        validar_fechas(self.fecha_inicio, self.fecha_termino)
-
 class TipoUsuario(models.Model):
     nombre = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=500) 
@@ -99,6 +70,38 @@ class Usuario(models.Model):
      
         
         # Validación de puntuación máxima
+
+
+class Servicio(models.Model):
+    nombre = models.CharField(max_length=200, unique=True, validators=[MaxLengthValidator(200)])
+    descripcion = models.CharField(max_length=200, validators=[MaxLengthValidator(200)])
+    fecha_creacion = models.DateField(auto_now_add=True)
+    estado_servicio = models.BooleanField(default=True)
+    direccion = models.CharField(max_length=200, validators=[MaxLengthValidator(200)])
+    fecha_inicio = models.DateTimeField(null=True, blank=True)
+    fecha_termino = models.DateTimeField(null=True, blank=True)
+    usuario_realizador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    usuario_creador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='servicios_creados')
+    
+
+    def __str__(self):
+        return self.nombre
+    
+    class Meta:
+        verbose_name = 'Servicio'
+        verbose_name_plural = 'Servicios'
+        db_table = 'Servicio'
+
+    def clean(self):
+        # Validación de fecha de creación
+        
+
+        # Validación de campo estado_servicio
+        if self.estado_servicio not in [True, False]:
+            raise ValidationError('El campo estado_servicio debe tener un valor booleano.')
+        validar_fechas(self.fecha_inicio, self.fecha_termino)
+
+
        
 
 

@@ -3,10 +3,14 @@
 
 
 <div class="center">
-  <li><strong>perfil:</strong> {{ perfil.user }}</li>
+ <ul>
+  <li><strong>perfil:</strong> {{ perfil.id }}</li>
+   <li><strong>perfil:</strong> {{ perfil.user }}</li>
   <li><strong>perfil:</strong> {{ perfil.nombre }}</li>
   <li><strong>perfil:</strong> {{ perfil.email }}</li>
-    <ul>
+</ul> 
+ 
+   <!-- <ul>
       <li><strong>Nombre de usuario:</strong> {{ usuario.username }}</li>
       <li><strong>Nombre:</strong> {{ usuario.nombre }}</li>
       <li><strong>Apellido paterno:</strong> {{ .usuario.ap_paterno }}</li>
@@ -17,7 +21,7 @@
       <li><strong>Fecha de nacimiento:</strong> {{ usuario.fecha_nac }}</li>
       <li><strong>Puntuacion:</strong> {{ usuario.puntuacion }}</li>
       <h2>Servicios Aceptados:</h2>
-      <ul>
+      <ul>-->
           {% for servicio in servicios_aceptados %}
               <li>{{ servicio.nombre }}</li>
           {% empty %}

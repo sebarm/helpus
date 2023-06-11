@@ -35,8 +35,20 @@ def perfil(request):
     user = request.user
     usuario = request.user.usuario  # Modifica esta línea
     servicios_aceptados = usuario.servicios_aceptados()
+    #perfil = get_object_or_404(Usuario, id = usuario_creador)
+    
+    usuariosRegistrado = Usuario.objects.all()
+    data = {
+        'user' : user,
+        'usuario' : usuario,
+        'usuarios_registrado': usuariosRegistrado,
+        'servicios_aceptados': servicios_aceptados,
+        #'perfil': perfil
+        
+    }
+    
     # Otros códigos relacionados con el perfil
-    return render(request, 'front/perfil.html', {'usuario': user, 'servicios_aceptados': servicios_aceptados})
+    return render(request, 'front/perfil.html', data)
 
 
 

@@ -3,17 +3,17 @@
 
 
 <div class="center">
- 
+  <li><strong>perfil:</strong> {{ perfil.nombre }}</li>
     <ul>
       <li><strong>Nombre de usuario:</strong> {{ usuario.username }}</li>
-      <li><strong>Nombre:</strong> {{ usuario.usuario.nombre }}</li>
-      <li><strong>Apellido paterno:</strong> {{ usuario.usuario.ap_paterno }}</li>
-      <li><strong>Apellido materno:</strong> {{ usuario.usuario.ap_materno }}</li>
-      <li><strong>Teléfono:</strong> {{ usuario.usuario.telefono }}</li>
-      <li><strong>Email:</strong> {{ usuario.usuario.email }}</li>
-      <li><strong>Dirección:</strong> {{ usuario.usuario.direccion }}</li>
-      <li><strong>Fecha de nacimiento:</strong> {{ usuario.usuario.fecha_nac }}</li>
-      <li><strong>Puntuacion:</strong> {{ usuario.usuario.puntuacion }}</li>
+      <li><strong>Nombre:</strong> {{ usuario.nombre }}</li>
+      <li><strong>Apellido paterno:</strong> {{ .usuario.ap_paterno }}</li>
+      <li><strong>Apellido materno:</strong> {{ usuario.ap_materno }}</li>
+      <li><strong>Teléfono:</strong> {{ usuario.telefono }}</li>
+      <li><strong>Email:</strong> {{ usuario.email }}</li>
+      <li><strong>Dirección:</strong> {{ usuario.direccion }}</li>
+      <li><strong>Fecha de nacimiento:</strong> {{ usuario.fecha_nac }}</li>
+      <li><strong>Puntuacion:</strong> {{ usuario.puntuacion }}</li>
       <h2>Servicios Aceptados:</h2>
       <ul>
           {% for servicio in servicios_aceptados %}

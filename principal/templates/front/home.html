@@ -130,7 +130,7 @@
                               <p class="card-text"><strong>Fecha termino:</strong> {{ p.fecha_termino }}</p>
                               <p class="card-text"><strong>Dirección:</strong> {{ p.direccion }}</p>
                               <p class="card-text"><strong>Voluntario:</strong> {{ p.usuario_realizador }}</p>
-                              <p class="card-text"><strong>Creador:</strong> <a href="{% url 'perfil' usuario_creador=p.usuario_creador.id %}">{{ p.usuario_creador }}</a></p>
+                              <p class="card-text"><strong>Creador:</strong> <a href="{% url 'perfil' id=p.usuario_creador.id %}">{{ p.usuario_creador }}</a></p>
                               <div class="btn-group" role="group" aria-label="Acciones">
                                 <form method="post" action="{% url 'guardar_servicio' %}">
                                   {% csrf_token %}

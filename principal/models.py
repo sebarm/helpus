@@ -68,7 +68,7 @@ class Usuario(models.Model):
     email = models.EmailField()
     direccion = models.CharField(max_length=200, validators=[MinLengthValidator(5)])
     fecha_nac = models.DateTimeField()
-    servicio_asignado = models.ForeignKey(Servicio, on_delete=models.SET_NULL, null=True, blank=True)
+  
     telefono = models.CharField(
         max_length=200,validators=[RegexValidator(r'^\+?1?\d{9,15}$')])
     puntuacion = models.IntegerField(

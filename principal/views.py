@@ -31,11 +31,11 @@ def changePassword(request):
     return render(request, 'registration/changePassword.html')
 
 @login_required
-def perfil(request):
+def perfil(request, usuario_creador):
     user = request.user
     usuario = request.user.usuario  # Modifica esta línea
     servicios_aceptados = usuario.servicios_aceptados()
-    #perfil = get_object_or_404(Usuario, id = usuario_creador)
+    perfil = get_object_or_404(Usuario, id = usuario_creador)
     
     usuariosRegistrado = Usuario.objects.all()
     data = {
@@ -43,7 +43,7 @@ def perfil(request):
         'usuario' : usuario,
         'usuarios_registrado': usuariosRegistrado,
         'servicios_aceptados': servicios_aceptados,
-        #'perfil': perfil
+        'perfil': perfil
         
     }
     

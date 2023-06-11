@@ -16,7 +16,7 @@ urlpatterns = [
   path('guardar_servicio/', views.guardar_servicio, name='guardar_servicio'),
   path('eliminar_servicio/<int:servicio_id>/', views.eliminar_servicio, name='eliminar_servicio'),
   path('liberar_servicio/<int:servicio_id>/', views.liberar_servicio, name='liberar_servicio'),
-  path('perfil/p.usuario_creador.id', views.perfil, name='perfil'),
+   path('perfil/<int:usuario_creador>/', views.perfil, name='perfil'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -104,3 +104,10 @@ input[type=submit]:hover {
 .homeSub{
   background-image: url('../img/inscripcion.png');
 }
+.formil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('../img/formu.jpeg');
+}

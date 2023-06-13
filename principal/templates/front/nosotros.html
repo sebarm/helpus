@@ -1,31 +1,32 @@
-{% extends 'main.html'%} {% load static %} 
+{% extends 'main.html' %}
+{% load static %}
+
 {% block contenido %}
-
-
 <div class="container-fluid">
+  <!-- HERO SECTION -->
+  <section class="col-12">
+    <img
+      class="col-12"
+      style="height: 500px;"
+      src="../../../static/principal/img/manos.jpeg"
+      alt=""
+    />
+  </section>
 
-    <!---------------HERO--------------> 
-    <section class="col-12">
-        <img
-          
-          class=" col-12"
-          style="height: 550px; "
-          src="../../../static/principal/img/hero1.jpg"
-          alt=""
-        />
-      </section>
-      <div class="col-xl-9 mx-auto">
-        <div class="cta-inner text-center rounded mt-4 mb-5">
-          <h1 class="section-heading mb-4">
-            <span class="section-heading-upper" style="color: white"
-              >Help Us
-            </span>
-          </h1>
-          
-          
-          <h2 class="mb-2 text-white">Una ayuda para los que más lo necesitan</h2>
-        </div>
-      </div>
+  <!-- INTRO SECTION -->
+  <div class="col-xl-9 mx-auto">
+    <div class="cta-inner text-center rounded mt-4 mb-5">
+      <h1 class="section-heading mb-4">
+        <span class="section-heading-upper" style="color: white;">Ayuda a Nuestra Comunidad</span>
+      </h1>
+      <h2 class="mb-2" style="color: white;">Brindando Apoyo a Personas de la Tercera Edad y con Discapacidad</h2>
+      <p class="lead" style="color: white;">
+        Bienvenido a nuestra página web dedicada a ofrecer asistencia voluntaria a las personas de la tercera edad y con discapacidad. Nuestro propósito es promover la solidaridad y mejorar la calidad de vida de aquellos que más lo necesitan. Conectamos a personas que requieren ayuda especial con voluntarios comprometidos y dispuestos a brindar su apoyo en diversas áreas, como compañía, asistencia en tareas diarias, acompañamiento a citas médicas, paseos y mucho más.
+      </p>
+      <p class="lead" style="color: white;">
+        Nuestra misión es fomentar la inclusión y el bienestar de las personas vulnerables de nuestra comunidad. Si eres una persona en busca de ayuda o un voluntario deseoso de marcar la diferencia, esta plataforma es el punto de encuentro ideal. Regístrate en nuestro sitio y comienza a contribuir de manera significativa en la vida de otros. Juntos, podemos crear un entorno más compasivo y solidario.
+      </p>
+    </div>
+  </div>
 </div>
-
 {% endblock contenido %}

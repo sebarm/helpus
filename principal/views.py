@@ -64,7 +64,7 @@ def registro(request):
         if formulario.is_valid():
             formulario.save()
             user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
-            Usuario.objects.create(user=user, nombre=user.username, email= formulario.cleaned_data["email"], fecha_nac= formulario.cleaned_data["fecha_nac"], telefono= formulario.cleaned_data["telefono"], direccion= formulario.cleaned_data["direccion"], tipo= formulario.cleaned_data["tipo"], puntuacion= formulario.cleaned_data["puntuacion"], ap_paterno= formulario.cleaned_data["ap_paterno"], ap_materno= formulario.cleaned_data["ap_materno"]         )
+            #Usuario.objects.create(user=user, nombre=user.username, email= formulario.cleaned_data["email"], fecha_nac= formulario.cleaned_data["fecha_nac"], telefono= formulario.cleaned_data["telefono"], direccion= formulario.cleaned_data["direccion"], tipo= formulario.cleaned_data["tipo"], puntuacion= formulario.cleaned_data["puntuacion"], ap_paterno= formulario.cleaned_data["ap_paterno"], ap_materno= formulario.cleaned_data["ap_materno"]         )
             login(request, user)
             messages.success(request, "Registro con éxito ahora puedes solicitar o tambien ofrecer servicios")
             return redirect(to="home")

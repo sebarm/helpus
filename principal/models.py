@@ -32,7 +32,6 @@ class TipoUsuario(models.Model):
 
 class Usuario(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    tipo = models.ForeignKey(TipoUsuario,on_delete=models.CASCADE)
     nombre = models.CharField(max_length=200, validators=[MinLengthValidator(2)])
     ap_paterno = models.CharField(max_length=200, validators=[MinLengthValidator(2)])
     ap_materno = models.CharField(max_length=200, validators=[MinLengthValidator(2)])
@@ -51,12 +50,12 @@ class Usuario(models.Model):
     
     
     def __str__(self):
-        return self.nombre
+        return self.user.username
     
     class Meta:
-        verbose_name = 'Usuario'
-        verbose_name_plural = 'Usuarios'
-        db_table = 'Usuario'
+        verbose_name = 'Usuario22'
+        verbose_name_plural = 'Usuarios22'
+        db_table = 'Usuario222'
         
         
     def calcular_edad(self):
@@ -139,42 +138,6 @@ class ServicioOfrecido(models.Model):
         # otros validaciones
             
             
-class ServicioSolicitado(models.Model):   
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
-    fecha_creacion = models.DateField(auto_now_add=True)
-    fecha_inicio = models.DateField(null=True, blank=True)
-    fecha_termino = models.DateField(null=True, blank=True)
-    estado_servicio = models.BooleanField(default=True)
-    
-    class Meta:
-        verbose_name = 'ServiciosSolicitado'
-        verbose_name_plural = 'serviciosSolicitados'
-        db_table = 'ServicioSolicitado'
 
-        
-    def clean(self):
-        # Validación de fechas
-        if self.fecha_inicio > self.fecha_termino:
-            raise ValidationError('La fecha de inicio no puede ser posterior a la fecha de término.')
-        if self.fecha_termino < self.fecha_inicio:
-            raise ValidationError('La fecha de término no puede ser anterior a la fecha de inicio.')
-        validar_fechas(self.fecha_inicio, self.fecha_termino)
-        # otros validaciones
-
-        # Validación de campo estado_servicio
-        if self.estado_servicio not in [True, False]:
-            raise ValidationError('El campo estado_servicio debe tener un valor booleano.')   
-        
-        # Validación de solapamiento de fechas con otros servicios del usuario
-        servicios_usuario = ServicioSolicitado.objects.filter(usuario=self.usuario).exclude(id=self.id)
-        for servicio in servicios_usuario:
-            if self.fecha_inicio <= servicio.fecha_termino and self.fecha_termino >= servicio.fecha_inicio:
-                raise ValidationError('El servicio se solapa con otro servicio del usuario.')
-            
-            
-
-    
-    
             
                        

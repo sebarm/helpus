@@ -103,6 +103,7 @@ def guardar_servicio(request):
     if request.method == 'POST':
         servicio_id = request.POST.get('servicio_id')
         servicio = get_object_or_404(Servicio, id=servicio_id)
+
         request.user.servicio_asignado = servicio
         request.user.save()
 

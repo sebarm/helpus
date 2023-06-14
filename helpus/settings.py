@@ -34,7 +34,9 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 #necesario para implementar accounts login y register de django
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 # Application definition
 
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
     'static',
     'crispy_forms',
     'bootstrap_datepicker_plus',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'helpus.urls'
